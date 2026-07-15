@@ -8,7 +8,6 @@ import { QuizPlayer } from './components/QuizPlayer';
 import { Profile } from './components/Profile';
 import { useSocket } from './hooks/useSocket';
 
-// ----- Навигация (простая, без лишних анимаций) -----
 function Navigation() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
@@ -53,7 +52,6 @@ function Navigation() {
   );
 }
 
-// ----- Главная страница (чистая сетка) -----
 function Home() {
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -121,7 +119,6 @@ function Home() {
         </p>
 
         <div className="grid md:grid-cols-2 gap-6">
-          {/* Карточка входа в комнату */}
           <div className="card">
             <h2 className="text-lg font-semibold text-gray-700 mb-4">Join a Room</h2>
             <input
@@ -148,7 +145,6 @@ function Home() {
             </button>
           </div>
 
-          {/* Карточка действий */}
           <div className="card">
             <h2 className="text-lg font-semibold text-gray-700 mb-4">Quick Actions</h2>
             {user?.role === 'ORGANIZER' ? (
@@ -178,13 +174,11 @@ function Home() {
   );
 }
 
-// ----- Защита маршрутов -----
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated } = useAuth();
   return isAuthenticated ? <>{children}</> : <Navigate to="/auth" replace />;
 }
 
-// ----- Компонент приложения -----
 function AppContent() {
   const { isAuthenticated } = useAuth();
 
